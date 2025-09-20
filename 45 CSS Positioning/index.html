@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS Positioning Exercise</title>
+  <style>
+    /* Write your code here */
+    .blue-box {
+      position:relative;
+      width:500px;
+      height: 300px;
+      background-color: blue;
+      top: 200px;
+      left: 200px;
+    }
+    .red-circle {
+      position:absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: red;
+      left: 250px;
+      top: 150px
+    }
+    .fixed-box {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: goldenrod;
+      left: 50px;
+      top: 150px;
+    }
+    /*  static จะเป็น position ปกติเป็นค่า default ของทุก obj */
+    /* sticky จะเป็น position แบบ relative แต่เมื่อเราเลือนหน้าจอจนเกือบมองไม่เห็น จะถูกปรับเป็นแบบ fixed*/
+  </style>
+</head>
+
+<body>
+  <div class="blue-box">
+    <div class="red-circle">
+    </div>
+  </div>
+  <div class="fixed-box">
+  </div>
+
+</body>
+
+</html>

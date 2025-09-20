@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+TODO: เปลี่ยนสีพื้นหลังสำหรับแต่ละอุปกรณ์
+[lightsalmon] อุปกรณ์พกพา: 319 พิกเซล — 480 พิกเซล
+[powderblue] iPad และแท็บเล็ต: 481 พิกเซล — 1200 พิกเซล
+[limegreen] แล็ปท็อป: 1201 พิกเซล — 1600 พิกเซล
+[seagreen] เดสก์ท็อป: 1601 พิกเซล และอื่นๆ
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <title>Media Query</title>
+  <style>
+    body {
+      background-color: aquamarine;
+      
+    }
+    @media (min-width: 139px) and (max-width:480px) {
+      body {
+        background-color: lightsalmon;
+      }
+    }
+    @media (min-width: 481px) and (max-width:1200px) {
+      body {
+        background-color: powderblue;
+      }
+    }
+    @media (min-width: 1201px) and (max-width: 1600px) {
+      body {
+        background-color: limegreen;
+      }
+    }
+    @media (min-width: 1601px) {
+      body {
+        background-color: seagreen;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>

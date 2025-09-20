@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Color: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+    body {
+      height: 100vh; /*Tag Body ไม่ได้กำหนดความสูงเอาไว้*/
+      background: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+    }
+    .container {
+      width: 748px; height: 746px;
+      background: black;
+      
+      display: grid;
+      grid-template-columns: 320px 198px 153px 50px ;
+      grid-template-rows: 414px 130px 155px 20px ; /*746*/
+      gap: 9px;
+      
+    }
+    .items {
+      background: #F0F1EC;
+    }
+    .red {
+      background: #E72F24;
+    }
+    .white-1 {
+      grid-column: span 3;
+    }
+    .white-2 {
+      grid-row: span 2;
+    }
+    .white-3 {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+    .blue {
+      background: #004592;
+      border-bottom: 10px solid rgb(0, 0, 0)  ;
+    }
+    .white-4 {
+      grid-row: span 2;
+    }
+    .yellow {
+      background: #F9D01E;
+    }
+    .black {
+      background: #232629;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+   <div class="container">
+      <div class="items red"></div>
+      <div class="items white-1"></div>
+      <div class="items white-2"></div>
+      <div class="items white-3"></div>
+      <div class="items blue"></div>
+      <div class="items white-4"></div>
+      <div class="items"></div>
+      <div class="items yellow"></div>
+      <div class="items black"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+      <div class="items"></div>
+   </div>
+</body>
+
+</html>
