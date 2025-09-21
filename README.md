@@ -317,3 +317,46 @@ class such as...
 
     
 
+
+
+## DOM Document object model
+# เราสามารถใช้ java scrip ในการ select object in document ได้โดยมีตัวอย่างดังน้ 
+- document 
+    เราจะใช้ document เพื่อระบุว่าเราจะเข้าถึงเอกสารทั้งหมด
+- document.firstElementChile()
+    เพื่อระบุว่าเราจะเลือก element ตัวแรกใน document 
+- document.lastElementChile()
+    เพื่อระบุว่าเราจะเลือก element ตัวสุดท้ายใน document
+- document.querySelector()
+    สารถเลือกได้ว่าจะเอา object อะไรโดยสามารถเลือกจาก id, class, tagName ได้หมด และเราสามารถเลือกแบบ Hierarchy โดย มีวิธี เลือกเหมือน CSS เลย เช่น #recCar li
+- document.querySelectorAll()
+    ใช้งานเหมือนกัน กับ query แต่ต่างตรงที่ selectorAll จะได้ค่าเป็น array
+- document.getElementById()
+    เลือก object โดย id
+- document.getElementByClass()
+    เลือก object โดย Class
+
+* เมื่อเลือก ได้แล้วจะสามารถใช้งานได้ 2 คุณสมบัติ คือ Property เช่น color, innerHTML Method เช่น onChick()
+
+# เราสามารถ add, delete, toggle class ใน object ใน HTML ผ่าน java scrip ได้ 
+- document.querySelector("button").classList.add("class name to add")
+    classList : ทำหน้าที่แสดง class ของ object
+    .add คือเพิ่ม class ไปให้ object ที่เราเลือก
+- document.querySelector("button").classList.delete("class name to add")
+    .delete คือลบ class ใน object ที่เราเลือกตามชื่อที่เราใส่เข้าไป
+- document.querySelector("button").classList.toggle("class name to add")
+    .toggle คือสั่งให้ class ที่เราใส่เปิดการทำงาน และหากมันปิดการทำงานอยู่การเรียก toggle อีกครั้งก็จะเป็นการเปิดการทำงานแทนใช้ในกรณีที่เรา debug class property
+
+# innerHTML
+    ไม่ได้มีความสามารถในการเพิ่มส่วนข้อความไปใน tag ที่เราเลือกเพียงเท่านั้นแต่ สามารถที่จะเพิ่ม tag ไปด้านในได้ด้วยเช่น
+    document.querySelector("h1").innerHTML = "<strong>HELLO WORLD</strong>" ;
+# textContent 
+    จะต่างกับ innerHTML ตรงที่จะสามารถ เพิ่มได้แค่ส่วนของ text เท่านั้น
+# manage attribute
+    สิ่งที่เราเรียกว่า attribute คือส่วนที่อยู่ภายใน tag เปิดทั้งหมด เช่น <a href='https://www.google.com'>Google web page </a> ส่วน href คือส่วน attribute หากเราต้องการเปลี่ยน ทำได้โดย
+- document.querySelector("a").attribute; 
+    return ช่ือ, จำวน
+- document.querySelector("a").getAttribute("href");
+    return สิ่งที่อยู่ใน href
+- document.querySelector("a").setAttribute("href", "www.bing.com");
+    จะเปลี่ยน attribute ที่เลือก
