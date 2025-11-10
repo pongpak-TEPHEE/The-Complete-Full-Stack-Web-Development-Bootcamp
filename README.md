@@ -320,6 +320,7 @@ class such as...
 
 
 ## DOM Document object model
+
     เราสามารถใช้ java scrip ในการ select object in document ได้โดยมีตัวอย่างดังน้ 
     document 
         เราจะใช้ document เพื่อระบุว่าเราจะเข้าถึงเอกสารทั้งหมด
@@ -338,21 +339,25 @@ class such as...
 
     เมื่อเลือก ได้แล้วจะสามารถใช้งานได้ 2 คุณสมบัติ คือ Property เช่น color, innerHTML Method เช่น onChick()
 
-
     เราสามารถ add, delete, toggle class ใน object ใน HTML ผ่าน java scrip ได้ 
+
     document.querySelector("button").classList.add("class name to add")
         classList : ทำหน้าที่แสดง class ของ object
         .add คือเพิ่ม class ไปให้ object ที่เราเลือก
+
     document.querySelector("button").classList.delete("class name to add")
         .delete คือลบ class ใน object ที่เราเลือกตามชื่อที่เราใส่เข้าไป
+    
     document.querySelector("button").classList.toggle("class name to add")
         .toggle คือสั่งให้ class ที่เราใส่เปิดการทำงาน และหากมันปิดการทำงานอยู่การเรียก toggle อีกครั้งก็จะเป็นการเปิดการทำงานแทนใช้ในกรณีที่เรา debug class property
 
     innerHTML
-        ไม่ได้มีความสามารถในการเพิ่มส่วนข้อความไปใน tag ที่เราเลือกเพียงเท่านั้นแต่ สามารถที่จะเพิ่ม tag ไปด้านในได้ด้วยเช่น
+        ไม่ได้มีความสามารถในการเพิ่มส่วนข้อความไปใน tag ที่เราเลือกเพียงเท่านั้นแต่ สามารถที่จะเพิ่ม tag ไปด้านในได้ด้วย เช่น
         document.querySelector("h1").innerHTML = "<strong>HELLO WORLD</strong>" ;
+    
     textContent 
         จะต่างกับ innerHTML ตรงที่จะสามารถ เพิ่มได้แค่ส่วนของ text เท่านั้น
+    
     manage attribute
         สิ่งที่เราเรียกว่า attribute คือส่วนที่อยู่ภายใน tag เปิดทั้งหมด เช่น <a href='https://www.google.com'>Google web page </a> ส่วน href คือส่วน attribute หากเราต้องการเปลี่ยน ทำได้โดย
     document.querySelector("a").attribute; 
@@ -362,10 +367,83 @@ class such as...
     document.querySelector("a").setAttribute("href", "www.bing.com");
         จะเปลี่ยน attribute ที่เลือก
 
-## 136 Adding Event Listeners
+    ## 136, 144 Adding Event Listeners
 
-    ในการสั่งให้ function ทำงานเรามีวิธี คือ onClick(), addEventListener() 
-    โดย addEventListener() ดีกว่าตรงที่เราสามารถเพิ่ม function ไปได้มากกว่า 1 func 
-    เช่น 
-    document.querySelector("button").addEventListener("click", "function name? ");
-    
+        ในการสั่งให้ function ทำงานเรามีวิธี คือ onClick(), addEventListener() 
+        โดย addEventListener() ดีกว่าตรงที่เราสามารถเพิ่ม function ไปได้มากกว่า 1 func 
+        เช่น 
+            document.querySelector("button").addEventListener("click", functionName() );
+            โดย ในที่นี้คือ "click" function ทำงานเมื่อเรากด "คลิกบาง object บนหน้าจอเรา"
+
+            document.addEventListener("keydown", function(event){condition})
+            "keydown" ทำหน้าที่ ดัก event ที่มาจากการพิมพ์คีย์บอด และสามารถดูรายละเอียดได้หลายอย่างเช่น
+                event.key ดูว่าปุ่มที่กดคือปุ่มอะไรเช่น a, b, i, e, o
+                event.code ดูว่าปุ่มที่เรากดคือ code อะไรเช่น KeyA, KeyB, Space, CapsLock
+
+                หมายเหตุ เราสามารถดูว่า event มีค่าอะไรบ้างโดย console.log(event)
+
+    ## 140 หลักการใช้ this
+
+        ในการที่เราจะกล่าวถึง object อะไรที่เจาะจงเราจะต้องใช้ this นำหน้า
+
+    ## 141 object for javascript
+
+        การกำหนดคุณสมบัติให้ตัวแปร จะมีลักษณะดังนี้ 
+        var teacher = {eat: "apple", walk: "in school", do: "teach student"};
+
+        หลักการใช้ this.xxxxx
+        ในกรณีที่เราต้องการสรา้งหลาย object เราสามารถสร้าง function มาเก็บค่า Property ได้เช่นเราสร้าง 
+
+            function hk(yearsOfExperience, name, cleaningRepertoire) {
+                this.yearsOfExperience = yearsOfExperience;
+                this.name = name; 
+                this.cleaningRepertoire = cleaningRepertoire;
+            }
+            ดังนั้นสรุปว่า this.name คือ property เปรียบเสมือนกระเป๋าเก็บคุณสมบัติ
+                    name คือ parameter ที่ส่งมาตอนสร้าง object
+            เมื่อมีการเรียก จากตัวชื่อของ object ถึง property จะใช้ข้อมูลจาก this. ไปแสดงเช่น
+
+            var houseKeeper = new hk(5, "dear", ["bathroom", "lobby"])
+            houseKeeper.name ได้ผลลัพท์คือ dear (dear ที่แสดงคือค่า this.name ที่ใส่ไปตอนที่ object ถูกสร้าง)
+
+            จะมอง this. เป็น ชื่อ property ก็ได้เช่น this. มองเป็น houseKeeper.
+
+    ## 142 function in function 
+        สื่บเนื่องจาก 141 เราได้เรียนรู้การสร้าง object โดยใช้ function ไปในหัวข้อนี้เป็นการสร้าง function ไปใน 1 อย่างของ property ด้วย
+        ตัวอย่างเช่น : 
+            function hk(yearsOfExperience, name, cleaningRepertoire) {
+                this.yearsOfExperience = yearsOfExperience;
+                this.name = name; 
+                this.cleaningRepertoire = cleaningRepertoire;
+                ||
+                \/
+                this.clean = function() {
+                    alert("houseKeeper cleaning on the floor");
+                }
+            }
+
+            **************************
+            // สร้าง object
+            var houseKeeper = new hk(12, "dear", ["bathroom"])
+            // เรียกใช้
+            houseKeeper.clean();
+
+
+    ## 146 animation for button
+        ในการกดปุ่มเราสามารถใส่ animation ไปได้โดยอาจจะเพิ่ม showdown ไปนิดหน่อยโดยใช้เทคนิคการเพิ่ม class โดยการใช้ querySelector() หากเราต้องการให้ปุ่มไหนมี animation เราก็เพิ่ม class ไปปุ่มนั้นตัวอย่างเช่น
+
+        ---CSS---
+        .pressed {
+        box-shadow: 0 3px 4px 0 #DBEDF3;
+        opacity: 0.5;
+        }
+
+        ---JS---
+        var activeButton = document.querySelector("." + "class name"); // เลือกปุ่ม
+        activeButton.classList.add("pressed");
+
+        // เมื่อเพิ่ม class จะทำให้เกิด shadow แต่มันจะไม่หายไปเองเราต้อง remove class ออกด้วย
+
+        setTimeOut(function (){
+            activeButton.classList.remove("pressed");
+        }, 100); // หน่วงเวลา 100 ms
