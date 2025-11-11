@@ -39,7 +39,6 @@ function makeSound(button) {
     }
 }
 
-
 function playSoundForKey() {
 
     // event คือการกดปุ่มใดๆ บนแป้นพิมพ์

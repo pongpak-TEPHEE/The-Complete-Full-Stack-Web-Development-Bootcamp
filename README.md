@@ -428,7 +428,6 @@ class such as...
             // เรียกใช้
             houseKeeper.clean();
 
-
     ## 146 animation for button
         ในการกดปุ่มเราสามารถใส่ animation ไปได้โดยอาจจะเพิ่ม showdown ไปนิดหน่อยโดยใช้เทคนิคการเพิ่ม class โดยการใช้ querySelector() หากเราต้องการให้ปุ่มไหนมี animation เราก็เพิ่ม class ไปปุ่มนั้นตัวอย่างเช่น
 
@@ -447,3 +446,78 @@ class such as...
         setTimeOut(function (){
             activeButton.classList.remove("pressed");
         }, 100); // หน่วงเวลา 100 ms
+
+## 150.JQuery FrameWork
+
+    ส่วนที่ถูกคิดค้นมาเพื่อให้ใช้งาน JavaScrip ให้ง่ายขึ้นและเขียนสันลง
+    ตัวอย่าง 
+    ---Default JavaScrip---
+    document.querySelect("h1").classList.add("up-font-size");
+    ---JQuery framework---
+    $("h1").addClass("up-font-size");
+
+    การใช้ jquery สามารถเลือกหลาย object ได้
+    ตัวอย่าง
+    ในกรณีที่เราอยากเลือก "p" ทุกตัว
+    ---Default JavaScrip---
+    document.querySelectAll("h1");
+    ---JQuery framework---
+    $("h1")
+
+    โดยทั่วไปนั้นการเพิ่ม CSS ไม่ค่อยถูกใช้นักเนื่องจากควรอยู่ใน file html มากกว่า file js ดังนั้นส่วนที่จะถูกใช้มากกว่าคือการเพิ่ม class ไปใน object 
+    คัวอย่าง
+    $("h1").addClass("font-up") //การเพิ่ม class ไปที่ object h1
+    $("h1").addRemove("font-up") //การลบ class ไปที่ object h1
+
+    และเราสามารถตรวจสอบว่า object ที่เราเลือกนั้นมี class ชื่อนี้อยู่ไหมได้โดย
+    ตัวอย่าง
+    $("h1").hasClass("font-up")
+
+    เราสามารถใช้ Jquery จัดการกับ text ได้ด้วยดังนี้
+    หากเราต้องการที่จะเปลี่ยนข้อความทำได้โดย
+    $("h1").text("Change text is completely")
+
+    หรือเราต้องการที่จะเพิ่ม object ไปที่ html 
+    $("h1").html("<p>you have a good idea </p>")
+    ---result---
+    true เมื่อมี
+    fault เมื่อไม่มี
+
+    เราสามารถเปลี่ยน attribute ของ object ได้เช่น
+    ---html---
+    <img src="./Drum.png">
+    <a href="https://www.google.com" >go to google</a>
+    ---Query---
+    $(img).attr("src", "new part")
+    $(a).attr("href", "https://www.yahoo.com")
+
+    เราสามารถใช้ query เพื่อใช้การ click เป็นการเปิดใช้ function ได้
+    ---Query---
+    $("h1").click(function(){
+        $("h1").css("color", "red");
+    })
+
+    เราสามารถใช้ query เพื่อจับการพิมท์ได้
+    ---Query---
+    $("input").keydown(function(event) {
+        $("h1").text("PONGPAK");
+    })
+
+    เราสามารถดัก event แบบที่แนบเนียนและเป็นมิตรมากกว่าโดยใช้ .on เช่น
+    ---Query---
+    $("h1").on("mouseover", function() {
+        $("h1").css("color", "white");
+    })
+    และเอาออกด้วย
+    ---Query---
+    $("h1").on("mouseout", function() {
+        $("h1").css("color", "yellow");
+    })
+
+    โดยมีรูปแบบ file อยู่สองส่วนคือ 1. แบบไม่บีบอัด จะเป็นไฟล์ .js ปกติ
+                              2. แบบบีบอัดจะได้ ไฟล์ min.js โดยจะอยูในรูป minified เพื่อให้ประหยัดพื้อนที่    และทำงานได้เร็วขั้น
+    
+    แต่โดยส่วนมากการติดตั้งเราจะใช้ CDN ของ Google 
+    ทำไมเราต้องใช้ CDN ใน Jquery หากเราเรียกใช้จำเป็นต้องมีการประมวลผลเหมือน framework ทั่วไปแต่ถ้าเราใช้ CDM ของ Google เราไม่จำเป็นต้องประมวลผลใหม่เราสามารถใช้ Jquery ของ Google ได้เลยทำให้เว็บเราไว้ขึ้นด้วย
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>         
