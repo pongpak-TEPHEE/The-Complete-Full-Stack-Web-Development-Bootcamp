@@ -492,27 +492,44 @@ class such as...
     $(a).attr("href", "https://www.yahoo.com")
 
     เราสามารถใช้ query เพื่อใช้การ click เป็นการเปิดใช้ function ได้
-    ---Query---
+    ---JQuery---
     $("h1").click(function(){
         $("h1").css("color", "red");
     })
 
     เราสามารถใช้ query เพื่อจับการพิมท์ได้
-    ---Query---
+    ---JQuery---
     $("input").keydown(function(event) {
         $("h1").text("PONGPAK");
     })
 
     เราสามารถดัก event แบบที่แนบเนียนและเป็นมิตรมากกว่าโดยใช้ .on เช่น
-    ---Query---
+    ---JQuery---
     $("h1").on("mouseover", function() {
         $("h1").css("color", "white");
     })
     และเอาออกด้วย
-    ---Query---
+    ---JQuery---
     $("h1").on("mouseout", function() {
         $("h1").css("color", "yellow");
     })
+
+    Jquery เราสามารถเพิ่ม object ไปยังเอกสารเราได้เลย โดยจะมีทั้งหมด 4 แบบคือ
+        1. before
+        ---JQuery---
+        $("h1").before("<button>OK</button>") // <h1>Hello!</h1> <button>OK</button>
+        2. after
+        ---JQuery---
+        $("h1").after("<button>OK</button>") // <button>OK</button> <h1>Hello!</h1>
+        3. prepend
+        ---JQuery---
+        $("h1").perpend("<button>OK</button>") // <h1> <button>OK</button> Hello!</h1>
+        4. append
+        ---JQuery---
+        $("h1").perpend("<button>OK</button>") // <h1> Hello! <button>OK</button> </h1>
+
+    สุดท้ายนี้ ราสามารถสร้าง animation ได้มี animation มากมายให้เรียกใช้แต่เราไม่จำเป็นต้องจำให้ไปดูเอกสารในหน้าเว็บ
+    https://api.jquery.com/category/effects/
 
     โดยมีรูปแบบ file อยู่สองส่วนคือ 1. แบบไม่บีบอัด จะเป็นไฟล์ .js ปกติ
                               2. แบบบีบอัดจะได้ ไฟล์ min.js โดยจะอยูในรูป minified เพื่อให้ประหยัดพื้อนที่    และทำงานได้เร็วขั้น
