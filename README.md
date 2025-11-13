@@ -467,7 +467,7 @@ class such as...
     โดยทั่วไปนั้นการเพิ่ม CSS ไม่ค่อยถูกใช้นักเนื่องจากควรอยู่ใน file html มากกว่า file js ดังนั้นส่วนที่จะถูกใช้มากกว่าคือการเพิ่ม class ไปใน object 
     คัวอย่าง
     $("h1").addClass("font-up") //การเพิ่ม class ไปที่ object h1
-    $("h1").addRemove("font-up") //การลบ class ไปที่ object h1
+    $("h1").removeClass("font-up") //การลบ class ไปที่ object h1
 
     และเราสามารถตรวจสอบว่า object ที่เราเลือกนั้นมี class ชื่อนี้อยู่ไหมได้โดย
     ตัวอย่าง
