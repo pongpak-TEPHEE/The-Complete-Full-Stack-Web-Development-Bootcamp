@@ -1,52 +1,19 @@
 To do list
 
-1./  เมื่อแพ้ background กระพิบสีแดง 
+1.  เมื่อแพ้ background กระพิบสีแดง 
     ตัวหนังสือ "Game Over, Press Any Key to Restart" ขึ้น
     มีเสียงที่บ่งบอกว่าแพ้ถูกเล่น
 
-2./  สร้างระบบให้เริ่มมาต้องกด A, a เพื่อเริ่มเกม
+2.  สร้างระบบให้เริ่มมาต้องกด A, a เพื่อเริ่มเกม
 
-3./  หลังจากกด A, a ให้ตัวหนังสือ "Level 1" ขึ้น
+3.  หลังจากกด A, a ให้ตัวหนังสือ "Level 1" ขึ้น
 
-4./  ทำระบบ random ตำแหน่ง เมื่อได้แล้วให้ใส่ animation กระพิบ ที่ตำแหน่งนั้น
+4.  ทำระบบ random ตำแหน่ง เมื่อได้แล้วให้ใส่ animation กระพิบ ที่ตำแหน่งนั้น
 
-5./ เมื่อผูเล่นกดปุ่มต้องมี animation white showdown ที่ตำแหน่งนั้น และแต่ละตำแหน่งต้องมีเสียงและเสียงต้องไม่เหมือนกัน
+5. เมื่อผูเล่นกดปุ่มต้องมี animation white showdown ที่ตำแหน่งนั้น และแต่ละตำแหน่งต้องมีเสียงและเสียงต้องไม่เหมือนกัน
 
-6./ ถ้าผู้เล่นกดผิด ตน. จะแพ้ แต่หากผู้เล่นกดถูกจะเปลี่ยนตัวหนังสือ "Level 2"
+6. ถ้าผู้เล่นกดผิด ตน. จะแพ้ แต่หากผู้เล่นกดถูกจะเปลี่ยนตัวหนังสือ "Level 2"
 
-7./ ถ้าผู้เล่นชนะ ไปเลื่อยๆ Level จะเป็น Level n+1 ในด้านถัดไป
+7. ถ้าผู้เล่นชนะ ไปเลื่อยๆ Level จะเป็น Level n+1 ในด้านถัดไป
 
-8./  ลำดับการกดจะเรียงไปตั้งแต่เริ่ม และเพิ่มขึ้นเมื่อชนะ แต่ตำแหน่งที่ให้กดเพิ่มจะแสดงแค่ตำแหน่งล่าสุด
-
-
-
-
-ฝาก
-var i = 0;
-    var roundFor = 1;
-    $(".container").on("click", function(event) {
-        roundFor = orderColor.length;
-        userClickColor.push(event.target.id);
-        console.log(event.target.id+" vs "+mapColorWithNumber.get(orderColor[i]));
-
-        for(var j=0; j<roundFor; j++){
-            if(userClickColor[j] == mapColorWithNumber.get(orderColor[j])){
-                $("#level-title").text("Level " + (j+2));
-                randomNumber = Math.floor(Math.random() * 4); // สุ่มเลข 0-3
-                orderColor.push(randomNumber);
-                animationAutoPress("#" + mapColorWithNumber.get(randomNumber))
-            };
-        };
-
-        if(event.target.id == mapColorWithNumber.get(orderColor[i])){
-
-            $("#level-title").text("Level " + (i+2));
-            randomNumber = Math.floor(Math.random() * 4); // สุ่มเลข 0-3
-            orderColor.push(randomNumber);
-            animationAutoPress("#" + mapColorWithNumber.get(randomNumber))
-            i++;
-        }else{
-            i = orderColor.length; // ออกจากลูป for
-            gameOver();
-        }
-    });
+8.  ลำดับการกดจะเรียงไปตั้งแต่เริ่ม และเพิ่มขึ้นเมื่อชนะ แต่ตำแหน่งที่ให้กดเพิ่มจะแสดงแค่ตำแหน่งล่าสุด
