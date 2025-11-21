@@ -174,7 +174,7 @@ Back End
     Kill port on Mac OS
         npx kill-port <port number>
 
-# 203 HTTP require
+# 203 HTTP require (3.2)
 
     ประกอบด้วย get , post , put , patch , delete
 
@@ -211,7 +211,58 @@ Back End
             res.send("This is test http website");
         });
 
+# 204 Postman (3.3)
     
+    https status code 
+        100-190 informational responses
+        200-299 successful responses
+        300-399 redirection massage
+        400-499 client error responses
+        500-599 server error responses
+    
+    result : https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+
+# 205 introduction to Middleware (3.4)
+    
+    เมื่อมี require get method part "/" ให้ส่ง file "index.html" ไปให้ user 
+    แต่การที่เราจะส่งไฟล์ให้เราต้องมีการระบุ part ที่อยู่ของไฟล์ "index.html" ใน เครื่องที่เรากำหนดเป็น server ให้ถูกต้อง โดยเราใช้
+
+        ขั้นตอนที่ 1 
+        import { dirname } from "path";
+        import { fileURLToPath } from "url";
+
+        const __dirname = dirname(fileURLToPath(import.meta.url));
+
+        ขั้นตอนที่ 2 นำ path dirname ไปเพิ่มกับ directory ที่เก็บ file เรา
+        app.get("/", (req, res) => {
+            res.sendFile(__dirname + "/public/index.html");
+        });
+    
+    index1.js
+
+    body-parser
+        ขั้นที่ 1 ติดตั้ง
+            --- terminal ---
+            npm i body-parser
+        ขั้นที่ 2 
+            --- index.js ---
+            import bodyParser from 'body-parser'
+
+            // เรียกใช้ 
+            app.use(bodyParser(urlencoded{ extended : true}));
+    
+    เราจึงสามารถ ใช้ 
+        app.post("/submit", (req, res) => {
+            console.log(req.body);
+        });
+    เพื่อดู body ของ req ที่ส่งมาหาเราได้
+
+    
+
+            
+
+            
+
 
 
 
