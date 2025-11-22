@@ -222,7 +222,7 @@ Back End
     
     result : https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 
-# 205 introduction to Middleware (3.4)
+# 205-206 introduction to Middleware - Custom middleware (3.4 index1.js - index4.js)
     
     เมื่อมี require get method part "/" ให้ส่ง file "index.html" ไปให้ user 
     แต่การที่เราจะส่งไฟล์ให้เราต้องมีการระบุ part ที่อยู่ของไฟล์ "index.html" ใน เครื่องที่เรากำหนดเป็น server ให้ถูกต้อง โดยเราใช้
@@ -238,7 +238,7 @@ Back End
             res.sendFile(__dirname + "/public/index.html");
         });
     
-    index1.js
+    --- index1.js ---
 
     body-parser
         ขั้นที่ 1 ติดตั้ง
@@ -249,20 +249,103 @@ Back End
             import bodyParser from 'body-parser'
 
             // เรียกใช้ 
-            app.use(bodyParser(urlencoded{ extended : true}));
+            app.use(bodyParser.urlencoded({ extended : true}));
     
     เราจึงสามารถ ใช้ 
         app.post("/submit", (req, res) => {
             console.log(req.body);
         });
     เพื่อดู body ของ req ที่ส่งมาหาเราได้
+    body-parser คืออะไร 
+        คือการแปลง requirement ที่ client ส่งมาให้เป็น javascript object เพื่อให้ javascript อ่านได้
+        หาไปใช้ body-parser ข้อมูลที่ส่งมาจะเป็น raw file เช่น json 
 
-    
+    --- index2.js ---
 
-            
+    morgan 
+        ขั้นตอนที่ 1 ติดตั้ง
+            --- terminal ---
+            npm i morgan
+        
+        ขั้นตอนที่ 2 เรียกใช้ 
+            --- index2.js ---
+            import morgan form 'morgan';
 
-            
+            app.use(morgan("tiny")) // "tiny" is option
+    morgan คือ library ที่เอาไว้สร้าง log ขั้นมาเพื่อเก็บข้อมูลการกระทำต่างๆ
 
+    การสร้าง middleware ขึ้นมาเอง
+    โดยปกติหลักการใช้ middleware จะใช้ผ่าน app.use(); แล้วภายในจะใส่ function middleware ที่เรา import มา 
+    โดยเราสารมารถใส่ function ที่เราสร้างเองได้
+    ** และเราสามารถ ใส่ middleware ได้มากกว่า 1 function แต่เราต้องใส่ next() เพื่อบอกว่าเราจะไป middleware อันถัดไปเมื่อไหร่
 
+    --- index3.js ---
 
+    ตัวอย่าง 1 : 
+        const logger = (req, res, next) => {
+            console.log('Logger');
+            next();
+        }
 
+        const auth = (req, res, next) => {
+            console.log('Checking auth');
+            next();
+        }
+
+        app.use(logger, auth);
+
+        app.get('/', (req, res) => {
+            res.send('Home page');
+        });
+
+    ตัวอย่างที่ 2:
+        app.use(logger);
+
+        function logger(req, res, next) {
+        console.log("\n\n\n ____________________");
+        console.log(`requirement URL : "${req.url}"`);
+        console.log(`requirement method : ${req.method}`);
+        console.log(`requirement method : ${req.headers["user-agent"]}`);
+        next();
+        };
+
+    --- index4.js ---
+        การทดลองใช้ความรู้ที่ได้ โดยการสร้าง middleware ที่ดักจับ input ของ form โดยหากมีข้อความดังกล่าวให้ส่ง poss method
+        กลับไปให้ Client 
+
+        // import library จาก npm 
+        import express from "express";
+        import bodyParser from "body-parser";
+        import { dirname } from "path";
+        import { fileURLToPath } from "url";
+
+        // สร้าง ตัวแปร "__dirname" ที่รเก็บ ที่อยู่ file ภายในเครื่อง server มาจาก path
+        const __dirname = dirname(fileURLToPath(import.meta.url));
+        // สร้างตัวแปรเก็บ express ชื่อ app
+        const app = express();
+        // ตั้ง port "3000"
+        const port = 3000;
+
+        // เรียกใช้ middleware ผ่าน app.use(); ในที่นี้มี 2 ตัวขั้นด้วย "," และ next();
+        app.use(bodyParser.urlencoded({ extended : true}), (req, res, next) => {
+        console.log(req.body['street']); // req.body.street
+        console.log(req.body['pet']); // req.body.pet
+        var bandName = req.body.street + req.body.pet;
+        if (req.body.street == "Sriracha" && req.body.pet == "cat") {
+            app.post("/submit", (req, res) => {
+            res.send("<h1>Your band name is: </h1>\n"+"<h2>" + bandName +" 🤯😎"+ "</h2>\n");
+            });
+        }
+
+        next();
+        });
+
+        app.get("/", (req, res) => {
+        res.sendFile(path.join(__dirname, "public", "index.html"));
+        });
+
+        app.listen(port, () => {
+        console.log(`Listening on port ${port}`);
+        });
+ 
+# 207 
