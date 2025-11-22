@@ -403,4 +403,70 @@ resources :
  
 # EJS Embedded javascript
 
-## 207 
+## 210 What is EJS 
+
+* EJS คือ temple engine ของ node.js เพื่อให้เราสามารถส่ง ข้อมูลจาก server ไป client (web page) ได้ง่ายขึ้น
+
+- ขั้นตอนสำหรับการใช้งาน EJS
+1. (หากใช้ VS code) ให้ติดตั้ง `extension EJS language support` 
+
+2. ติดตั้ง external library 
+    
+    --- terminal ---
+    npm i ejs
+
+3. สร้าง folder `views` เพื่อเก็บไฟล์ index.ejs
+
+4. สร้าง file index.ejs
+
+- ตัวอย่างไฟล์ index.js ที่มีการเรียกใช้ ejs
+    import express from 'express';
+
+    const app = express();
+    const PORT = 3000;
+
+    // บอก express ว่าเราจะใช้ ejs
+    // app.set("view engine", "ejs");
+
+    let date = new Date();
+    let day = date.getDay();
+
+    const mapDay = new Map([
+    [0, "sunday"],
+    [1, "monday"],
+    [2, "tuesday"],
+    [3, "wednesday"],
+    [4, "thursday"],
+    [5, "friday"],
+    [6, "saturday"],
+    ]);
+
+    console.log(mapDay.get(day));
+
+    app.get("/", (req, res) => {
+    
+    if(day === 6 || day === 0){
+        res.render('index.ejs', { 
+        timeOfDay: "weekend", 
+        describe: "Have fun!!" 
+        });
+    }else{
+        res.render('index.ejs', { 
+        timeOfDay: "weekday", 
+        describe: "Work hard!!" 
+        });
+    }
+    });
+
+
+    app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+    });
+
+- ตัวอย่างใน ejs file
+    <!DOCTYPE html>
+    <html>
+    <body>
+        <h1>Hey! It's a <%= timeOfDay%> , it's time to <%= describe%></h1>
+    </body>
+    </html>
